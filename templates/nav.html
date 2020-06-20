@@ -1,0 +1,84 @@
+ {% load static %}
+  <header role="banner">
+    <nav class="navbar navbar-expand-md navbar-dark bg-light">
+      <div class="container">
+        <a class="navbar-brand absolute" href="{% url 'online_class:index' %}">TFR</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05"
+          aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'online_class:index' %}">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="{% url 'online_class:courses' %}" id="dropdown04" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">B.E Computer</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+                
+                <a class="dropdown-item" href="{% url 'online_class:subjects' %}">Semester I</a>
+                <a class="dropdown-item" href="{% url 'online_class:first_subjects' %}">Semester II</a>
+                <a class="dropdown-item" href="{% url 'online_class:second_subjects' %}">Semester III</a>
+                <a class="dropdown-item" href="{% url 'online_class:third_subjects' %}">Semester IV</a>
+                <a class="dropdown-item" href="{% url 'online_class:fourth_subjects' %}">Semester V</a>
+                <a class="dropdown-item" href="{% url 'online_class:fifth_subjects' %}">Semester VI</a>
+                <a class="dropdown-item" href="{% url 'online_class:sixth_subjects' %}">Semester VII</a>
+                <a class="dropdown-item" href="{% url 'online_class:seventh_subjects' %}">Semester VIII</a>
+              </div>
+
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">Categories</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown05">
+                <a class="dropdown-item" href="#">Software Programming</a>
+                <a class="dropdown-item" href="#">Hardware and Networking</a>
+                <a class="dropdown-item" href="#">Graphic Design</a>
+                <a class="dropdown-item" href="#">online_class Clases</a>
+                <a class="dropdown-item" href="#">Web Development</a>
+              </div>
+
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'online_class:blog' %}">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'online_class:about' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'online_class:contact' %}">Contact</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav absolute-right">
+            {% if user.is_authenticated and not user.is_superuser %}
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img src="{% static 'images/face.png' %}" class="profile-image img-circle"> {{user.first_name}}</ <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                      <li><a href="#"><i class="fa fa-cog"></i> Account</a></li>
+                      <li class="divider"></li>
+                      <li><a href="{% url 'registration:logout' %}"><i class="fa fa-cog"></i> Sign-out</a></li>
+                  </ul>
+              </li>             
+            {% else %}
+              <li class="nav-item">
+                <a href="{% url 'registration:login' %}" class="nav-link">Login</a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'registration:register' %}" class="nav-link">Register</a>
+              </li>
+             <li class="nav-item">
+                <a href="{% url 'admin:index' %}" class="nav-link">Admin</a>
+              </li>
+              {% endif %}
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- END header -->

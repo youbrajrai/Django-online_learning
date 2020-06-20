@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <section class="site-hero site-hero-innerpage overlay" data-stellar-background-ratio="0.5" style="background-image: url({% static 'images/work1.jpg' %});">
+      <div class="container">
+        <div class="row align-items-center site-hero-inner justify-content-center">
+          <div class="col-md-8 text-center">
+
+            <div class="mb-5 element-animate">
+              <h1>Login</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section class="site-section bg-light">
+  <div class="container"><br>
+    
+    <div class="col-lg-6 m-auto d-block">
+      
+      <form action="." method="POST" onsubmit="return validation()" class="bg-light">{% csrf_token %}
+        
+        <div class="form-group">
+          <label for="user" class="font-weight-bold"> Username: </label>
+          <input type="text" name="username" class="form-control" id="user" autocomplete="off">
+          <span id="username" class="text-danger font-weight-bold"> </span>
+        </div>
+
+        <div class="form-group">
+          <label class="font-weight-bold"> Password: </label>
+          <input type="password" name="password" class="form-control" id="pass" autocomplete="off">
+          <span id="passwords" class="text-danger font-weight-bold"> </span>
+        </div>
+      </p>
+        <input type="submit" name="submit" value="submit" class="btn btn-success">
+      </form>
+      
+      <div>
+        {% for message in messages %}
+        <h2>{{message}}</h2>
+        {% endfor %}
+      </div>
+      
+      <div class="link">
+        <a href="#">Forgot password?</a> or <a href="{% url 'registration:register' %}">Sign up</a>
+      </div>
+    </div>  
+   </div><br><br>
+</section>
+    <!-- END section -->
+    <!--Scroll top button-->
+  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+  <script>
+    //Get the button
+    var mybutton = document.getElementById("myBtn");
+    
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+    
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+    </script>
+  <script type="text/javascript">
+    
+
+    function validation(){
+  
+      var user = document.getElementById('user').value;
+      var pass = document.getElementById('pass').value;
+  
+
+
+      if(user == ""){
+        document.getElementById('username').innerHTML =" ** Please fill the username field";
+        return false;
+      }
+      if((user.length <= 2) || (user.length > 20)) {
+        document.getElementById('username').innerHTML =" ** Username lenght must be between 2 and 20";
+        return false; 
+      }
+      if(!isNaN(user)){
+        document.getElementById('username').innerHTML =" ** only characters are allowed";
+        return false;
+      }
+
+      if(pass == ""){
+        document.getElementById('passwords').innerHTML =" ** Please fill the password field";
+        return false;
+      }
+      if((pass.length <= 5) || (pass.length > 20)) {
+        document.getElementById('passwords').innerHTML =" ** Passwords lenght must be between  5 and 20";
+        return false; 
+      }
+  </script>    
+  <!--Scroll end of code-->
+{% endblock %}
